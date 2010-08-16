@@ -4,7 +4,7 @@
 	// Abstract this to just call the methods of the networks available to it.
 	// 
 
-	function socialize_helper_run($method, $return = FALSE)
+	function socialize_layout_run($method, $return = FALSE)
 	{
 		$ci =& get_instance();
 		
@@ -34,23 +34,22 @@
 			return $return_string;
 		}
 	}
-
-	function socialize_xmlns($return = FALSE)
+	
+	function socialize_layout($key, $return = FALSE)
 	{
-		return socialize_helper_run('xmlns', $return);
+		$method = 'socialize_layout_'.$key;
+		
+		if ( function_exists($method) )
+		{
+			return $method();
+		}
+		else
+		{
+			return socialize_layout_run($key, $return);
+		}
 	}
 	
-	function socialize_head($return = FALSE)
-	{
-		return socialize_helper_run('head', $return);
-	}
-	
-	function socialize_footer($return = FALSE)
-	{
-		return socialize_helper_run('footer', $return);
-	}
-	
-	function socialize_login_buttons()
+	function socialize_layout_login_buttons()
 	{
 		$ci =& get_instance();
 		$networks = $ci->socializenetworks->networks();
