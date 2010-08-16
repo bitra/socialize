@@ -17,6 +17,8 @@
 			<a class="logout" href="<?=site_url('welcome/logout')?>">Logout</a>
 		<?php endif;?>
 		
+		<span class="socialize-name socialize-name-twitter">elliothaughin</span>
+		
 		<?php socialize_layout('footer');?>
 	</body>
 </html>

@@ -95,8 +95,7 @@
 				$cols = array(
 					'user_id' => array('type' => 'INT', 'constraint' => 9, 'unsigned' => TRUE, 'auto_increment' => TRUE),
 					'password' => array('type' => 'VARCHAR', 'constraint' => 40, 'null' => FALSE),
-					'first_name' => array('type' => 'VARCHAR', 'constraint' => 50, 'null' => FALSE),
-					'last_name' => array('type' => 'VARCHAR', 'constraint' => 50, 'null' => FALSE)
+					'name' => array('type' => 'VARCHAR', 'constraint' => 150, 'null' => FALSE)
 				);
 				
 				$this->dbforge->add_key('user_id', TRUE);

@@ -135,12 +135,13 @@
 		
 		public function socialize_user()
 		{
+			if ( !$this->logged_in() ) return NULL;
+			
 			$me = $this->get_me();
 			
 			$user = new stdClass();
 			
-			$user->first_name = $me['first_name'];
-			$user->last_name = $me['last_name'];
+			$user->name = $me['first_name'].' '.$me['last_name'];
 			
 			return $user;
 		}

@@ -14,17 +14,17 @@
 		
 		foreach ( $networks as $network )
 		{
-			$method = $network.'_'.$method;
+			$network_method = $network.'_'.$method;
 			
-			if ( function_exists($method) )
+			if ( function_exists($network_method) )
 			{
 				if ( $return === TRUE )
 				{
-					$return_string .= $method();
+					$return_string .= $network_method();
 				}
 				else
 				{
-					echo $method();
+					echo $network_method();
 				}
 			}
 		}
@@ -47,6 +47,11 @@
 		{
 			return socialize_layout_run($key, $return);
 		}
+	}
+	
+	function socialize_name($user)
+	{
+		return $user->name;
 	}
 	
 	function socialize_layout_login_buttons()

@@ -96,8 +96,7 @@
 		
 		private function _create_user($socialize_user, $network = NULL, $network_user_id = NULL)
 		{
-			$socialize_user->first_name = ucwords(strtolower($socialize_user->first_name));
-			$socialize_user->last_name = ucwords(strtolower($socialize_user->last_name));
+			$socialize_user->name = $socialize_user->name;
 			$socialize_user->password = sha1($network.$network_user_id.mt_rand());
 
 			$this->_obj->db->insert($this->_table_users, $socialize_user);
