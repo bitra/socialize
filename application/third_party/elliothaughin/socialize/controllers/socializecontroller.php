@@ -6,6 +6,8 @@ class SocializeController extends Controller {
 	{
 		parent::Controller();
 		
+		parse_str($_SERVER['QUERY_STRING'], $_GET);
+		
 		$this->load->add_package_path(APPPATH.'third_party/elliothaughin/socialize/');
 		$this->_autoload();
 	}
