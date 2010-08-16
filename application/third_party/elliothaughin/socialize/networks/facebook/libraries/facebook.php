@@ -41,8 +41,8 @@
 		{
 			$this->_obj =& get_instance();
 
-			$this->_obj->load->config('networks/facebook');
-			$this->_obj->load->helper('networks/facebook');
+			$this->_obj->load->config('facebook');
+			$this->_obj->load->helper('facebook');
 
 			$this->_app_id = $this->_obj->config->item('facebook_app_id');
 			$this->_api_secret = $this->_obj->config->item('facebook_api_secret');

@@ -16,7 +16,8 @@
 		{
 			foreach ( $this->_networks as $network )
 			{
-				$this->_obj->load->library('networks/'.$network.'/'.$network);
+				$this->_obj->load->add_package_path(APPPATH.'third_party/elliothaughin/socialize/networks/'.$network.'/');
+				$this->_obj->load->library($network);
 				
 				if ( $this->_obj->$network->logged_in() )
 				{

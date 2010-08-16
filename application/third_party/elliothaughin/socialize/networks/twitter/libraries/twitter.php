@@ -9,8 +9,8 @@
 		{
 			$this->_obj =& get_instance();
 			
-			$this->_obj->load->config('networks/twitter');
-			$this->_obj->load->helper('networks/twitter');
+			$this->_obj->load->config('twitter');
+			$this->_obj->load->helper('twitter');
 		}
 		
 		public function logged_in()
