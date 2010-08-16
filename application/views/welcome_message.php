@@ -10,14 +10,13 @@
 	<body>
 		<h1>Hi there</h1>
 		
-		<?php var_dump($this->socializeauth->user());?>
-		
-		<?php if ( !$this->socializeauth->connected('facebook') ):?>
-			<?=facebook_login_button()?>
-		<?php endif;?>
-		<?php if ( $this->socializeauth->logged_in() ):?>
+		<?php if ( !$this->socializeauth->logged_in() ):?>
+			<?php socialize_login_buttons();?>
+		<?php else:?>
+			<?php var_dump($this->socializeauth->user());?>
 			<a class="logout" href="<?=site_url('welcome/logout')?>">Logout</a>
 		<?php endif;?>
+		
 		<?php socialize_footer();?>
 	</body>
 </html>

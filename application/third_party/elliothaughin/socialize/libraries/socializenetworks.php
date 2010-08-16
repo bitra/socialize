@@ -3,7 +3,7 @@
 	class SocializeNetworks {
 		
 		private $_obj;
-		private $_networks = array('facebook');
+		private $_networks = array('facebook','twitter');
 		
 		function __construct()
 		{

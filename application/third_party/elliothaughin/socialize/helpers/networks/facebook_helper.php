@@ -69,6 +69,13 @@
 		$return .= '</script>';
 		$return .= "\n";
 		
+		$ci =& get_instance();
+		
+		if ( $ci->socializeauth->connected('facebook') )
+		{
+			$return .= "<script type='text/javascript'>$(document).ready(function(){ $('a.logout').click(function(){ var next = $(this).attr('href'); FB.logout(function(response){ window.location.href = next; return true; }); return false; });});</script>";
+		}
+		
 		return $return;
 	}
 	
