@@ -67,4 +67,16 @@
 			
 			return TRUE;
 		}
+		
+		/*
+		 * Not enabled yet is a way to do a serverside auth using the oauth 2.0 from the @anywhere login.
+		 * 
+		 * However, twitter have announced that they will be doing this soon
+		 * so, I've decided not to use the traditional oAuth 1.0 on the serverside and instead
+		 * hold out till we can do @anywhere server-side
+		 * 
+		 * This just means that right now all we can do with twitter is a simple auth.
+		 * And some contact cards etc.
+		 * 
+		 */
 	}
