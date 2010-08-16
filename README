@@ -1,0 +1,10 @@
+Socialize - A Social Authentication Package for CodeIgniter 2.0
+
+Requires:
+
+	* CodeIgniter 2.0
+	* Curl (with SSL)
+	* Database
+	* A Facebook account ( for yourself )
+		- Facebook connect application keys ( app id, api_key, api_secret )
+		
