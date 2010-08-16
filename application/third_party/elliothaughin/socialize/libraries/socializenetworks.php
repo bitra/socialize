@@ -3,16 +3,17 @@
 	class SocializeNetworks {
 		
 		private $_obj;
-		private $_networks = array('facebook','twitter');
+		private $_networks = array();
 		
 		function __construct()
 		{
 			$this->_obj =& get_instance();
 			
+			$this->_get_networks();
 			$this->_autoload();
 		}
 		
-		function _autoload()
+		private function _autoload()
 		{
 			foreach ( $this->_networks as $network )
 			{
@@ -24,5 +25,25 @@
 					$this->_obj->socializeauth->network_login($network, $this->_obj->$network->get_user_id());
 				}
 			}
+		}
+		
+		private function _get_networks()
+		{
+			$this->_obj->load->helper('file');
+			
+			$directories = get_dir_file_info(APPPATH.'third_party/elliothaughin/socialize/networks/');
+			
+			foreach ( $directories as $directory => $info )
+			{
+				if ( (strpos($directory, '.') === FALSE) && !in_array($directory, $this->_networks) )
+				{
+					$this->_networks[] = $directory;
+				}
+			}
+		}
+		
+		public function networks()
+		{
+			return $this->_networks;
 		}
 	}

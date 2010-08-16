@@ -50,6 +50,11 @@
 		return $return;
 	}
 	
+	function facebook_head()
+	{
+		return facebook_opengraph_meta();
+	}
+	
 	function facebook_footer()
 	{
 		$return = '<div id="fb-root"></div>';

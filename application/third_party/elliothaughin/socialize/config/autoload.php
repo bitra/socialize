@@ -38,7 +38,7 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','session','socializeauth', 'socializenetworks');
+$autoload['libraries'] = array('session','socializeauth', 'socializenetworks');
 
 
 /*
