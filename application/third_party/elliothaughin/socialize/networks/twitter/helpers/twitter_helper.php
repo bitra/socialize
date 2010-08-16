@@ -10,10 +10,7 @@
 	{
 		$ci =& get_instance();
 		
-		if ( $ci->config->item('twitter_use_anywhere') )
-		{
-			return '<script src="http://platform.twitter.com/anywhere.js?id='.$ci->config->item('twitter_api_key').'&v=1" type="text/javascript"></script>';
-		}
+		return '<script src="http://platform.twitter.com/anywhere.js?id='.$ci->config->item('twitter_api_key').'&v=1" type="text/javascript"></script>';
 	}
 	
 	function twitter_footer()
