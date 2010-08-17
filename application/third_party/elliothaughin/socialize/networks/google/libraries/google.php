@@ -32,13 +32,15 @@
 			$me = $this->_user;
 			
 			$user = new stdClass();
-			$user->name = $this->_user['username'];
+			$user->name = $this->_user['name'];
 
 			return $user;
 		}
 		
 		public function logout()
 		{
+			$this->_obj->load->helper('cookie');
+			delete_cookie('fcauth'.$this->_obj->config->item('google_site_id'));
 		}
 		
 		private function _get_cookie()
@@ -68,10 +70,13 @@
 			
 			$user = json_decode($result);
 			
-			var_dump($user);
+			if ( !isset($user->entry->id) || !is_object($user->entry) ) return NULL;
 			
-			if ( empty($user) || is_object($user) ) return NULL;
+			$this->_user = 	array(
+								'id' 	=> $this->entry->id,
+								'name' 	=> $user->entry->displayName
+							);
 			
-			var_dump($user);
+			return TRUE;
 		}
 	}
