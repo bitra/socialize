@@ -70,6 +70,8 @@ class Oauth {
 
 		$request = $this->http_post($url, $prot);
 		
+		var_dump($request);
+		
 		$request = explode('&', $request);
 		$final = array();
 
