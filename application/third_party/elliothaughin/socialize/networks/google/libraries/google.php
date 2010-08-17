@@ -11,6 +11,8 @@
 			
 			$this->_obj->load->config('google');
 			$this->_obj->load->helper('google');
+			
+			$this->_get_cookie();
 		}
 		
 		public function get_user_id()
@@ -41,5 +43,9 @@
 		
 		private function _get_cookie()
 		{
+			$cookie = $_COOKIE['fcauth'.$this->_obj->config->item('google_site_id')];
+			if ( empty($cookie) ) return NULL;
+			
+			var_dump($cookie);
 		}
 	}
