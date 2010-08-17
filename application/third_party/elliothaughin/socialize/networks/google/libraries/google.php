@@ -66,7 +66,7 @@
 			$result = curl_exec($ch);
 			curl_close($ch);
 			
-			$user = json_decode($user);
+			$user = json_decode($result);
 			
 			if ( empty($user) || is_object($user) ) return NULL;
 			
