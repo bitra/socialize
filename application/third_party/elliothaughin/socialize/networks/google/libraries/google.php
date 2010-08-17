@@ -47,7 +47,7 @@
 			if ( empty($cookie) ) return NULL;
 			
 			// Let's try and get our profile.
-			$url = 'http://www.google.com/friendconnect/api/people/@owner/@self?fcauth='.$cookie;
+			$url = 'http://www.google.com/friendconnect/api/people/@me/@self?fcauth='.$cookie;
 		
 			$ch = curl_init();
 			
