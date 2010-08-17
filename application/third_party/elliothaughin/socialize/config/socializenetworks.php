@@ -1,3 +1,3 @@
 <?php
 
-	$config['socializenetworks_enabled'] = array('google');
+	$config['socializenetworks_enabled'] = array('facebook','twitter','google');
