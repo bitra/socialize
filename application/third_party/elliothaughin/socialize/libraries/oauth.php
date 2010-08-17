@@ -34,6 +34,8 @@ class Oauth {
 	private $curl;
 	private $ci;
 
+	protected $additional_params = array();
+
 	public function __construct($base_url = FALSE) {
 		$this->curl = curl_init();
 
@@ -57,16 +59,22 @@ class Oauth {
 	}
 
 	public function get_request_token() {
-		$prot = array(
+		
+		$prot = $this->additional_params;
+		
+		$oauth_prot = array(
 			"oauth_consumer_key"       => $this->shared_key,
 			"oauth_signature_method"   => $this->signature_method,
 			"oauth_timestamp"          => time(),
-			"oauth_nonce"              => sha1(time()),
+			"oauth_nonce"              => sha1(time())
 		);
 
 		$url = $this->site . $this->request_token_path;
 		
 		$prot['oauth_signature'] = $this->sign_request("POST", $url, $prot);
+		
+		
+		$prot = array_merge($prot, $oauth_prot);
 
 		$request = $this->http_post($url, $prot);
 		
@@ -130,7 +138,7 @@ class Oauth {
 			"oauth_token"              => $this->access_token,
 			"oauth_signature_method"   => $this->signature_method,
 			"oauth_timestamp"          => time(),
-			"oauth_nonce"              => sha1(time()),
+			"oauth_nonce"              => sha1(time())
 		);
 
 		$params = array_merge($params, $prot);
@@ -195,8 +203,11 @@ class Oauth {
 	}
 
 	private function http_post($url, $prot, $params = array()) {
+		
+		if ( empty($params) ) $params = $prot;
+		
 		curl_setopt($this->curl, CURLOPT_POST, TRUE);
-		curl_setopt($this->curl, CURLOPT_POSTFIELDS, $params);
+		curl_setopt($this->curl, CURLOPT_POSTFIELDS, http_build_query($params, null, '&'));
 
 		$request = $this->_request($url, $prot);
 

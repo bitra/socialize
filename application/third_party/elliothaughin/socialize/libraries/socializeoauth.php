@@ -16,4 +16,12 @@
 			
 			$this->$path = $value;
 		}
+		
+		function set_additional_param($key, $value)
+		{
+			$this->additional_params[$key] = $value;
+			
+			var_dump($this->additional_params);
+		}
+		
 	}
