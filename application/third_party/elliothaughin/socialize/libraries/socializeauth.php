@@ -8,10 +8,13 @@
 		private $_table_users_networks 	= '_socialize_users_networks';
 		private $_table_users 			= '_socialize_users';
 		private $_session_key 			= 'socialize_user';
+		private $_encryption_key		= 'somethinglovely';
+		private $_cookie_key			= '_socialize_previous_auth';
 		
 		function __construct()
 		{
 			$this->_obj =& get_instance();
+			$this->_obj->load->helper('cookie');
 			
 			$this->_get_session();
 		}
@@ -76,9 +79,21 @@
 				}
 				else 
 				{
-					// no luck? create them a user :)
+					// First let's check for a cookie.
+					$this->_obj->load->library('encrypt');
 					
-					$this->_create_user($this->_obj->$network->socialize_user(), $network, $network_user_id);
+					$cookie = get_cookie($this->_cookie_key);
+					$user_id = $this->_obj->encrypt->decode($cookie, $this->_encryption_key);
+					
+					if ( $this->_get_user($user_id) )
+					{
+						$this->_associate_user_with_network($this->_user, $network, $network_user_id);
+					}
+					else
+					{
+						// no luck? create them a user :)
+						$this->_create_user($this->_obj->$network->socialize_user(), $network, $network_user_id);
+					}
 				}
 			}
 		}
@@ -169,6 +184,20 @@
 				$this->_user = $user;
 				
 				$this->_obj->session->set_userdata($this->_session_key, $this->_user);
+				
+				// We should set a cookie telling us we've previously logged in.
+				// This is only a temporary measure.
+				
+				$this->_obj->load->library('encrypt');
+				
+				$cookie = array(
+				                   'name'   => $this->_cookie_key,
+				                   'value'  => $this->_obj->encrypt->encode($this->_user->user_id, $this->_encryption_key),
+				                   'expire' => '15768000',
+				                   'path'   => '/'
+				               );
+
+				set_cookie($cookie);
 				
 				return TRUE;
 			}
