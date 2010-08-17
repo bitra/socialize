@@ -68,6 +68,8 @@
 			
 			$user = json_decode($result);
 			
+			var_dump($user);
+			
 			if ( empty($user) || is_object($user) ) return NULL;
 			
 			var_dump($user);
