@@ -46,6 +46,24 @@
 			$cookie = $_COOKIE['fcauth'.$this->_obj->config->item('google_site_id')];
 			if ( empty($cookie) ) return NULL;
 			
-			var_dump($cookie);
+			// Let's try and get our profile.
+			$url = 'http://www.google.com/friendconnect/api/people/@owner/@self?fcauth='.$cookie;
+		
+			$ch = curl_init();
+			
+			$opts = array(
+				CURLOPT_CONNECTTIMEOUT 	=> 10,
+				CURLOPT_RETURNTRANSFER 	=> TRUE,
+				CURLOPT_TIMEOUT        	=> 60,
+				CURLOPT_USERAGENT      	=> 'codeigniter-socialize-1.0',
+				CURLOPT_URL				=> $url
+			);
+
+			curl_setopt_array($ch, $opts);
+
+			$result = curl_exec($ch);
+			curl_close($ch);
+			
+			var_dump($result);
 		}
 	}
