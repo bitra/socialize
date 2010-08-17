@@ -73,7 +73,7 @@
 			if ( !isset($user->entry->id) || !is_object($user->entry) ) return NULL;
 			
 			$this->_user = 	array(
-								'id' 	=> $this->entry->id,
+								'id' 	=> $user->entry->id,
 								'name' 	=> $user->entry->displayName
 							);
 			
