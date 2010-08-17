@@ -43,6 +43,8 @@
 		
 		private function _get_cookie()
 		{
+			if ( !isset($_COOKIE['fcauth'.$this->_obj->config->item('google_site_id')]) ) return NULL;
+			
 			$cookie = $_COOKIE['fcauth'.$this->_obj->config->item('google_site_id')];
 			if ( empty($cookie) ) return NULL;
 			
@@ -64,6 +66,10 @@
 			$result = curl_exec($ch);
 			curl_close($ch);
 			
-			var_dump($result);
+			$user = json_decode($user);
+			
+			if ( empty($user) || is_object($user) ) return NULL;
+			
+			var_dump($user);
 		}
 	}
