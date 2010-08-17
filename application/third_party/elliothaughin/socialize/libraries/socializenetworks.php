@@ -8,6 +8,7 @@
 		function __construct()
 		{
 			$this->_obj =& get_instance();
+			$this->_obj->load->config('socializenetworks');
 			
 			$this->_get_networks();
 			$this->_autoload();
@@ -32,10 +33,11 @@
 			$this->_obj->load->helper('file');
 			
 			$directories = get_dir_file_info(APPPATH.'third_party/elliothaughin/socialize/networks/');
+			$enabled = $this->_obj->config->item('socializenetworks_enabled');
 			
 			foreach ( $directories as $directory => $info )
 			{
-				if ( (strpos($directory, '.') === FALSE) && !in_array($directory, $this->_networks) )
+				if ( in_array($directory, $enabled) && (strpos($directory, '.') === FALSE) && !in_array($directory, $this->_networks) )
 				{
 					$this->_networks[] = $directory;
 				}
