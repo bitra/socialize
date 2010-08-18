@@ -21,5 +21,5 @@ Demo
 ----
 
 A demo of the latest source of the 'master' branch of this code is located here:
-	
-[Socialize Demo]: http://socialize.haughin.com/ 
+
+[Socialize Demo]: http://socialize.haughin.com/ "Socialize Demo"
