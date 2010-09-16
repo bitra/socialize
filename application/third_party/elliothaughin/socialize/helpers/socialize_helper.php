@@ -69,3 +69,55 @@
 		
 		echo '</ul>';
 	}
+	
+	function socialize_layout_head()
+	{
+		$ci =& get_instance();
+		$networks = $ci->socializenetworks->networks();
+		
+		socialize_view('head');
+		
+		foreach ( $networks as $network )
+		{
+			$method = $network.'_head';
+			echo $method();
+		}
+	}
+	
+	function socialize_layout_footer()
+	{
+		$ci =& get_instance();
+		$networks = $ci->socializenetworks->networks();
+		
+		socialize_view('footer');
+		
+		foreach ( $networks as $network )
+		{
+			$method = $network.'_footer';
+			echo $method();
+		}
+	}
+	
+	function socialize_view($view, $network = NULL, $return = FALSE)
+	{
+		$ci =& get_instance();
+		
+		if ( $network === NULL )
+		{
+			$path = APPPATH.'third_party/elliothaughin/socialize/views/';
+		}
+		else
+		{
+			$path = APPPATH.'third_party/elliothaughin/socialize/networks/'.$network.'/views/';
+		}
+		
+		if ( !file_exists($path.$view.EXT) ) return FALSE;
+		
+		$orig_view_path = $ci->load->_ci_view_path;
+		$ci->load->_ci_view_path = $path;
+
+		if ( $return === TRUE ) return $ci->load->view($view, NULL, TRUE);
+		$ci->load->view($view);
+		
+		$ci->load->_ci_view_path = $orig_view_path;
+	}
