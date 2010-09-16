@@ -61,14 +61,13 @@
 			<h1>Here is a newspaper site!</h1>
 		
 			<div id="news">
-				<?php for ( $i = 0; $i < 5; $i++ ):?>
+				<?php $i = 1;?>
 				<div class="news_item" id="news_<?=$i?>">
 					<h2><a class="share-url share-title" href="<?php echo site_url('articles/'.$i)?>">This is a <?=$i?> Title!!</a></h2>
 					<p class="share-body">This is the body for <?=$i?></p>
 					<img class="share-image" src="http://www.realworldimage.com/images/photos_med/marijuana-grow-op-vancouver-illegal-pot-joints-cannabis-drugs-cities-abstract-lifestyles-men-people-editorial-news_14339.jpg" />
 					<p><a href="#" class="share" rel="#news_<?=$i?>">Share This</a></p>
 				</div>
-				<?php endfor;?>
 			</div>
 			
 			<script type="text/javascript">
