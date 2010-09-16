@@ -89,6 +89,7 @@
 				width: 160px;
 			}
 			</style>
+			<div style="clear:both"></div>
 		</div>
 	</div>
 	<?php socialize_layout('footer');?>
