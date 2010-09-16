@@ -70,16 +70,8 @@
 				</div>
 			</div>
 			
-			<script type="text/javascript">
-			$(document).ready(function(){
-				$('#news').masonry({
-				  columnWidth: 180, 
-				  itemSelector: '.news_item' 
-				});
-			});
-			</script>
-			
 			<style type="text/css">
+			
 			.news_item {
 				padding: 10px;
 				border: 1px solid #CCC;
@@ -89,6 +81,7 @@
 				width: 160px;
 			}
 			</style>
+			
 			<div style="clear:both"></div>
 		</div>
 	</div>
