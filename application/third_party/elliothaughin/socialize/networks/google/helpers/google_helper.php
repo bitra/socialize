@@ -2,27 +2,15 @@
 
 	function google_head()
 	{
-		$return = '';
-		$return .= '<script type="text/javascript" src="http://www.google.com/jsapi"></script>';
-		$return .= '<script type="text/javascript">google.load("friendconnect", "0.8");</script>';
-		
-		return $return;
+		return socialize_view('header', 'google', TRUE);
 	}
 	
 	function google_footer()
 	{
-		$ci =& get_instance();
-		
-		$return = '';
-		
-		$return .= '<script type="text/javascript">$(document).ready(function(){';
-			$return .= 'google.friendconnect.container.setParentUrl("/");google.friendconnect.container.initOpenSocialApi({site: "'.$ci->config->item('google_site_id').'",onload: function(securityToken) {if ( !window.timesloaded ) { window.timesloaded = 1; } else { window.timesloaded++; } if (window.timesloaded > 1) { window.location.reload(); }}});';
-		$return .= '});</script>';
-		
-		return $return;
+		return socialize_view('footer', 'google', TRUE);
 	}
 	
 	function google_login_button()
 	{
-		return '<a href="#" onclick="google.friendconnect.requestSignIn();">Sign in with Google</a>';
+		return socialize_view('login_button', 'google', TRUE);
 	}
